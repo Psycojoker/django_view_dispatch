@@ -12,7 +12,7 @@ def dispatch(**kwargs):
     verbs = CaseInsensitiveDict()
     verbs.update(kwargs)
 
-    def dispatch_request(request):
+    def dispatch_request(request, *args):
         if request.method.lower() not in verbs:
             if default in verbs:
                 return verbs[default](request)
@@ -20,7 +20,7 @@ def dispatch(**kwargs):
                 # sorted is for determinist ordering for testing purpose
                 return HttpResponseNotAllowed(sorted(map(lambda x: x.upper(), verbs.keys())))
 
-        return verbs[request.method.lower()](request)
+        return verbs[request.method.lower()](request, *args)
 
     return dispatch_request
 

@@ -14,6 +14,10 @@ def post(request):
     return "post", request
 
 
+def put_args(request, pk):
+    return "put", request, pk
+
+
 class RequestMock():
     def __init__(self, method):
         self.method = method
@@ -21,6 +25,7 @@ class RequestMock():
 get_request = RequestMock(method="get")
 GET_request = RequestMock(method="GET")
 post_request = RequestMock(method="POST")
+put_request = RequestMock(method="PUT")
 
 
 def test_base():
@@ -55,3 +60,7 @@ def test_unsupported_method_several():
 
 def test_default():
     assert dispatch(get=get, put=get)(post_request) == ("get", post_request)
+
+
+def test_args():
+    assert dispatch(put=put_args)(put_request, 42) == ("put", put_request, 42)
