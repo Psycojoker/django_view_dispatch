@@ -1,6 +1,5 @@
 def dispatch(**verbs):
     def dispatch_request(request):
-        default = verbs.get("default", "GET")
-        return verbs.get(default, verbs[default.lower()])(request)
+        return verbs["get"](verbs["get"])
 
     return dispatch_request
