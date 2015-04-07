@@ -2,7 +2,7 @@ from django_view_dispatch import dispatch
 
 
 def get(request):
-    return "get"
+    return "get", request
 
 
 class RequestMock():
@@ -13,4 +13,4 @@ get_request = RequestMock(method="get")
 
 
 def test_base():
-    assert dispatch(get=get)(get_request) == "get"
+    assert dispatch(get=get)(get_request) == ("get", get_request)
