@@ -1,4 +1,9 @@
+import os
+
+from django.http  import HttpResponseNotAllowed
 from django_view_dispatch import dispatch
+
+os.environ["DJANGO_SETTINGS_MODULE"] = "settings"
 
 
 def get(request):
@@ -32,3 +37,17 @@ def test_basic_dispatch():
     dispatcher = dispatch(get=get, post=post)
     assert dispatcher(get_request) == ("get", get_request)
     assert dispatcher(post_request) == ("post", post_request)
+
+
+def test_unsupported_method():
+    dispatcher = dispatch(get=get)
+    result = dispatcher(post_request)
+    assert isinstance(result, HttpResponseNotAllowed)
+    assert ('Allow', 'GET') in result.items()
+
+
+def test_unsupported_method_several():
+    dispatcher = dispatch(get=get, put=get)
+    result = dispatcher(post_request)
+    assert isinstance(result, HttpResponseNotAllowed)
+    assert ('Allow', 'get, put') in result.items()
