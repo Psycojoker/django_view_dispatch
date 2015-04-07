@@ -50,4 +50,4 @@ def test_unsupported_method_several():
     dispatcher = dispatch(get=get, put=get)
     result = dispatcher(post_request)
     assert isinstance(result, HttpResponseNotAllowed)
-    assert ('Allow', 'get, put') in result.items()
+    assert ('Allow', 'GET, PUT') in result.items()

@@ -8,7 +8,8 @@ def dispatch(**kwargs):
 
     def dispatch_request(request):
         if request.method.lower() not in verbs:
-            return HttpResponseNotAllowed(map(lambda x: x.upper(), verbs.keys()))
+            # sorted is for determinist ordering for testing purpose
+            return HttpResponseNotAllowed(sorted(map(lambda x: x.upper(), verbs.keys())))
 
         return verbs[request.method.lower()](request)
 
