@@ -15,12 +15,15 @@ def dispatch(**kwargs):
     def dispatch_request(request, *args):
         if request.method.lower() not in verbs:
             if default in verbs:
-                return verbs[default](request, *args)
+                view = verbs[default]
             else:
                 # sorted is for determinist ordering for testing purpose
                 return HttpResponseNotAllowed(sorted(map(lambda x: x.upper(), verbs.keys())))
 
-        return verbs[request.method.lower()](request, *args)
+        else:
+            view = verbs[request.method.lower()]
+
+        return view(request, *args)
 
     return dispatch_request
 
