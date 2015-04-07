@@ -11,6 +11,9 @@ from . import views
 urlpatterns = patterns('',
     url(r'^some_url/$', dispatch(get=views.my_view, post=views.my_view_for_post), name='events_json'),
 
+    # you can get any keyword argument you want to specify any http verb
+    url(r'^some_url/$', dispatch(get=views.my_view, put=views.create, foo=views.another_view, bar=views.baz), name='events_json'),
+
     # by default, if a request has an HTTP verb that hasn't been specified in
     # the dispatch() function, it will be redirected to the GET view if present
     url(r'^some_url/$', dispatch(get=views.will_get_everything_thats_not_put, put=views.stuff), name='events_json'),
