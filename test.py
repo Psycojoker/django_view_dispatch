@@ -1,5 +1,6 @@
 from django_view_dispatch import dispatch
 
+
 def get(request):
     return "get"
 
