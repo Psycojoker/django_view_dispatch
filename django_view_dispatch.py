@@ -6,6 +6,6 @@ def dispatch(**kwargs):
     verbs.update(kwargs)
 
     def dispatch_request(request):
-        return verbs["get"](request)
+        return verbs[request.method.lower()](request)
 
     return dispatch_request
