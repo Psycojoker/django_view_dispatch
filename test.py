@@ -72,3 +72,12 @@ def test_args():
 
 def test_args_on_default():
     assert dispatch(get=get_args)(put_request, 31) == ("get", put_request, 31)
+
+
+def test_kwargs():
+    assert dispatch(put=put_args)(put_request, pk=42) == ("put", put_request, 42)
+
+
+
+def test_kwargs_on_default():
+    assert dispatch(get=get_args)(put_request, pk=31) == ("get", put_request, 31)

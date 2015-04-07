@@ -12,7 +12,7 @@ def dispatch(**kwargs):
     verbs = CaseInsensitiveDict()
     verbs.update(kwargs)
 
-    def dispatch_request(request, *args):
+    def dispatch_request(request, *args, **kwargs):
         if request.method.lower() not in verbs:
             if default in verbs:
                 view = verbs[default]
@@ -23,7 +23,7 @@ def dispatch(**kwargs):
         else:
             view = verbs[request.method.lower()]
 
-        return view(request, *args)
+        return view(request, *args, **kwargs)
 
     return dispatch_request
 
