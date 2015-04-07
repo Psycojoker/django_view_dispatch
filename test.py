@@ -10,6 +10,10 @@ def get(request):
     return "get", request
 
 
+def get_args(request, pk):
+    return "get", request, pk
+
+
 def post(request):
     return "post", request
 
@@ -64,3 +68,7 @@ def test_default():
 
 def test_args():
     assert dispatch(put=put_args)(put_request, 42) == ("put", put_request, 42)
+
+
+def test_args_on_default():
+    assert dispatch(get=get_args)(put_request, 31) == ("get", put_request, 31)
