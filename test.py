@@ -12,4 +12,4 @@ get_request = RequestMock(method="get")
 
 
 def test_base():
-    assert dispatch(get)(get_request) == "get"
+    assert dispatch(get=get)(get_request) == "get"

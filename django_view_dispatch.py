@@ -1,2 +1,4 @@
-def dispatch(get, default="get", **verbs):
-    return lambda x: get(x)
+def dispatch(**verbs):
+    default = verbs.get("default", "GET")
+
+    return lambda x: verbs.get(default, verbs[default.lower()])(x)
