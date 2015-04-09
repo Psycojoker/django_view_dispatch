@@ -4,6 +4,6 @@ install:
   - pip install pytest
 python:
   - "2.7"
-  - "3.4"
+  # - "3.4" weirdict doesn't support python3 yet, I've sent a pull request for that
 script:
   - py.test test.py
