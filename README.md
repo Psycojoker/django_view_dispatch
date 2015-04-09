@@ -60,3 +60,14 @@ therefor there is no point in supporting this feature.
 
 Also, to be honest, I have not idea on how to do that and haven't really made
 any research about it. That would also make the code way more complex.
+
+Running tests
+=============
+
+    pip install pytest
+    py.test test.py
+
+Licence
+=======
+
+BSD.
