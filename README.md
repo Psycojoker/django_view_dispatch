@@ -26,6 +26,6 @@ urlpatterns = patterns('',
     url(r'^input/$', dispatch(post=views.my_view_for_post, default=None), name='events_json'),  # behave like @require_POST
 
     # a more explicit way to do that is provided with "dispatch_strict" which behave exactly like dispatch with default set to None
-    url(r'^input/$', dispatch(post=views.my_view_for_post), name='events_json'),
+    url(r'^input/$', dispatch_strict(post=views.my_view_for_post), name='events_json'),
 )
 ```
