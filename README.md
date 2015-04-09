@@ -29,3 +29,34 @@ urlpatterns = patterns('',
     url(r'^input/$', dispatch_strict(post=views.my_view_for_post), name='events_json'),
 )
 ```
+
+Installation
+============
+
+    pip install django_view_dispatch
+
+Why
+===
+
+Something that you learn as you progress in programming is that conditional are
+"bad" (as in "should be avoided") because they [increase the complexity of your
+code](https://en.wikipedia.org/wiki/Cyclomatic_complexity) and are a potential
+source of bugs.
+
+For example, mixing POST and GET handling in the same view can be a good
+terrain for bug and for a more complex code while spliting it gives a
+[KISS](https://en.wikipedia.org/wiki/KISS_principle) situation where you have
+two views that do only one thing and do it well.
+
+Django doesn't provide an easy nor standard way to do this so this library is
+trying to address that.
+
+Can I use string like in the url function?
+==========================================
+
+No, since django 1.8, using string to target views in <code>patterns</code> [is
+depreciated](https://docs.djangoproject.com/en/1.8/releases/1.8/#django-conf-urls-patterns),
+therefor there is no point in supporting this feature.
+
+Also, to be honest, I have not idea on how to do that and haven't really made
+any research about it. That would also make the code way more complex.
