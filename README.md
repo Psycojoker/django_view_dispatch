@@ -51,8 +51,8 @@ two views that do only one thing and do it well.
 Django doesn't provide an easy nor standard way to do this so this library is
 trying to address that.
 
-Can I use string like in the url function?
-==========================================
+Can I use string to designated a view like in the standard url function?
+========================================================================
 
 No, since django 1.8, using string to target views in <code>patterns</code> [is
 depreciated](https://docs.djangoproject.com/en/1.8/releases/1.8/#django-conf-urls-patterns),
